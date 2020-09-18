@@ -1,0 +1,124 @@
+*::after, *::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size) * .9);
+}
+
+body {
+    background-color: rgb(32, 32, 32);
+    background-image: url("https://i.pinimg.com/originals/df/25/11/df2511d6f08f2de0333518f802656278.jpg");
+    color: rgb(230, 230, 230);
+    text-align: center;
+    justify-content: center;
+    font-size: 0.7em;
+    font-family: 'Indie Flower', 'Comic Sans', cursive;
+    margin: 0%;
+    padding: 0%;
+}
+
+h1 {
+    line-height: 1em;
+    margin-bottom: 0;
+    padding-bottom: 5px;
+    font-size: 400%;
+    font-weight: bold;
+    color: white;
+}
+
+.board_game {
+    background-color: white;
+    width: 330px;
+    height: 330px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 15px;
+    position: fixed;
+    top: 40%;
+    left: 49%;
+    margin-top: -50px;
+    margin-left: -150px;
+}
+
+.board_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    position: relative;
+    cursor: pointer;
+}
+
+.board_block.x,
+.board_block.circle {
+    cursor: not-allowed;
+}
+
+.board_block.x::before,
+.board_block.x::after {
+    background-color: lightblue;
+}
+
+.board_block.circle::before {
+    background-color: pink;
+}
+
+.board_game.x .board_block:not(.x):not(.circle):hover::before,
+.board_game.x .board_block:not(.x):not(.circle):hover::after,
+.board_game.circle .board_block:not(.x):not(.circle):hover::before {
+    background-color: lightgray;
+}
+
+.board_block.x::before,
+.board_block.x::after,
+.board_game.x .board_block:not(.x):not(.circle):hover::before,
+.board_game.x .board_block:not(.x):not(.circle):hover::after {
+    content: "";
+    position: absolute;
+    width: calc(var(--mark-size) * .15);
+    height: var(--mark-size);
+}
+
+.board_block.x::before,
+.board_game.x .board_block:not(.x):not(.circle):hover::before {
+    transform: rotate(45deg);
+}
+
+.board_block.x::after,
+.board_game.x .board_block:not(.x):not(.circle):hover::after {
+    transform: rotate(-45deg);
+}
+
+.board_block.circle::before,
+.board_block.circle::after,
+.board_game.circle .board_block:not(.x):not(.circle):hover::before,
+.board_game.circle .board_block:not(.x):not(.circle):hover::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+}
+
+.board_block.circle::before,
+.board_game.circle .board_block:not(.x):not(.circle):hover::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
+}
+
+.board_block.circle::after,
+.board_game.circle .board_block:not(.x):not(.circle):hover::after {
+    width: calc(var(--mark-size) * .7);
+    height: calc(var(--mark-size) * .7);
+    background-color: green;
+}
+
+.restart {
+    font-size: 200%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: bold;
+    margin-top: 10px;
+}
